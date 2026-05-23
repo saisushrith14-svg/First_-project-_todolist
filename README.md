@@ -1,3 +1,3 @@
 # First_-project-_todolist
-this repo is my first 'project'
-i built this in an afternoon so no judging 
+This repo is my first 'project'.
+I 'built' this in an afternoon so no judging 
