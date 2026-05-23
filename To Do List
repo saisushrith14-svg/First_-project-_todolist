@@ -1,0 +1,62 @@
+import os 
+os.chdir('/home/saisushrith/python/todoliststor')
+def add_task(task):
+    with open('todolist.txt','a') as file:
+        file.write(task + '\n')
+    print(view_tasks())
+
+def view_tasks():
+    with open('todolist.txt', 'r') as file:
+        tasks = file.readlines()
+    return [task.strip() for task in tasks]
+
+def delete_task(task):
+    with open('todolist.txt', 'r') as file:
+        tasks=file.readlines()
+    with open('todolist.txt', 'w') as file:
+        for t in tasks:
+            if t.strip() != task:
+                file.write(t)
+    print(view_tasks())
+def edit_task(old_task, new_task):
+    with open('todolist.txt', 'r') as file:
+        tasks=file.readlines()
+    with open('todolist.txt', 'w') as file:
+        for t in tasks:
+            if t.strip() == old_task:
+                file.write(new_task + '\n')
+            else:
+                file.write(t)
+    print(view_tasks())
+
+def main():
+    while True:
+        print("1. Add Task")
+        print("2. View Tasks")
+        print("3. Delete Task")
+        print("4. Edit Task")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            task = input("Enter the task: ")
+            add_task(task)
+        elif choice == '2':
+            tasks = view_tasks()
+            for idx, task in enumerate(tasks, 1):
+                print(f"{idx}. {task}")
+        elif choice == '3':
+            task = input("Enter the task to delete: ")
+            delete_task(task)
+        elif choice == '4':
+            old_task = input("Enter the task to edit: ")
+            new_task = input("Enter the new task: ")
+            edit_task(old_task, new_task)
+        elif choice == '5':
+            print("Exiting the to-do list application.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
